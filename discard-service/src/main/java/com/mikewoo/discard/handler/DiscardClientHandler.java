@@ -3,6 +3,8 @@ package com.mikewoo.discard.handler;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -14,6 +16,8 @@ import java.util.Date;
  */
 public class DiscardClientHandler extends ChannelInboundHandlerAdapter {
 
+    private static final Logger LOG = LoggerFactory.getLogger(DiscardClientHandler.class);
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         ByteBuf time = ctx.alloc().buffer(4);
@@ -23,7 +27,7 @@ public class DiscardClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        cause.printStackTrace();
+        LOG.info("exception happend, {}", cause.toString());
         ctx.close();
     }
 }

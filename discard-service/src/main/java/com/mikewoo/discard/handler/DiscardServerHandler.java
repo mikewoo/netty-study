@@ -3,6 +3,8 @@ package com.mikewoo.discard.handler;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -14,6 +16,8 @@ import java.util.Date;
  */
 public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
 
+    private static final Logger LOG = LoggerFactory.getLogger(DiscardServerHandler.class);
+
     /**
      * socket建立连接时，触发一个inbound事件channelActive时调用
      * @param ctx
@@ -21,7 +25,7 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("channel active, client address is " + ctx.channel().remoteAddress().toString());
+        LOG.info("channel active, client address is {}", ctx.channel().remoteAddress().toString());
     }
 
     /**
@@ -33,7 +37,7 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf m = (ByteBuf) msg;
-        System.out.println("read msg: " + new Date((m.readUnsignedInt() - 2208988800L) * 1000L));
+        LOG.info("read msg: {}", new Date((m.readUnsignedInt() - 2208988800L) * 1000L));
         m.release();
     }
 
@@ -45,8 +49,7 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        System.out.println("exception ");
-        cause.printStackTrace();
+        LOG.info("exception happend, {}", cause.toString());
         ctx.close();
     }
 }

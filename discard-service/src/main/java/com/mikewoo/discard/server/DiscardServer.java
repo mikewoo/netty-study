@@ -9,6 +9,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * DiscardServer
@@ -17,6 +19,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @date 2018/5/3 17:53
  */
 public class DiscardServer {
+
+    private static final Logger LOG = LoggerFactory.getLogger(DiscardServer.class);
 
     private int port;
 
@@ -40,7 +44,7 @@ public class DiscardServer {
                     .option(ChannelOption.SO_BACKLOG, 128)          // Connections配置项
                     .childOption(ChannelOption.SO_KEEPALIVE, true); // 每个Connection中Channel的配置项
 
-            System.out.println("discard server started && listen on " + port);
+            LOG.info("discard server started && listen on {}", port);
             ChannelFuture f = b.bind(port).sync(); // 绑定server到指定的port来开启服务，监听等待连接到来
 
 

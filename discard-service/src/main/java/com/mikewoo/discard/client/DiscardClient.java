@@ -9,6 +9,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * DiscardClient Server
@@ -17,6 +19,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  * @date 2018/5/3 18:07
  */
 public class DiscardClient {
+
+    private static final Logger LOG = LoggerFactory.getLogger(DiscardClient.class);
 
     public static void main(String[] args) throws Exception {
         String host = "127.0.0.1";
@@ -35,7 +39,7 @@ public class DiscardClient {
                 }
             });
 
-            System.out.println("discard  started && connect to server " + host + " : "+ port);
+            LOG.info("discard client started && connect to server {} : {}", host, port);
             ChannelFuture f = b.connect(host, port).sync(); // 启动客户端，连接对应的服务端
 
 
