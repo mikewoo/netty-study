@@ -62,6 +62,14 @@ public class NioTcpServer {
         return instance;
     }
 
+    public static void main(String[] args) {
+        int port = 8080;
+        if (args.length == 1) {
+            port = Integer.parseInt(args[0]);
+        }
+        NioTcpServer.getInstance().run(port);
+    }
+
     private void init(int port) {
         if (initialized) {
             return;
@@ -116,6 +124,8 @@ public class NioTcpServer {
             while (iterator.hasNext()) {
                 SelectionKey key = iterator.next();
 
+                // 移除处理过的键
+                iterator.remove();
                 try {
                     if (key.isAcceptable()) {
                         LOG.info("channel active");
@@ -147,8 +157,7 @@ public class NioTcpServer {
                     continue;
                 }
 
-                // 移除处理过的键
-                iterator.remove();
+
             }
         }
     }
@@ -157,14 +166,6 @@ public class NioTcpServer {
         init(port);
         start();
         System.exit(EXIT_NORMAL);
-    }
-
-    public static void main(String[] args) {
-        int port = 8080;
-        if (args.length == 1) {
-            port = Integer.parseInt(args[0]);
-        }
-        NioTcpServer.getInstance().run(port);
     }
 
     public int getPort() {
