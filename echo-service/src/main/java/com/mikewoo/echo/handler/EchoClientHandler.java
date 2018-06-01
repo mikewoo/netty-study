@@ -42,6 +42,8 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
         LOG.info("Client recevied: " + msg.toString(CharsetUtil.UTF_8));
+        Thread.sleep(1000);
+        ctx.writeAndFlush(Unpooled.copiedBuffer("Hello World\r\n", CharsetUtil.UTF_8));
     }
 
     @Override

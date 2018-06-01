@@ -68,7 +68,23 @@ public class EchoClient {
             host = args[0];
             port = Integer.parseInt(args[1]);
         }
+
         new EchoClient(host, port).start();
+
+        // 并发测试
+        // connectTest(host, port);
+    }
+
+    private static void connectTest(String host, int port) {
+        for (int i = 0; i < 10; i++) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    LOG.info("discard client started && connect to server {} : {}", host, port);
+                    new EchoClient(host, port).start();
+                }
+            }).start();
+        }
     }
 
     public String getHost() {

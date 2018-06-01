@@ -118,14 +118,13 @@ public class NioTcpServer {
 
                 try {
                     if (key.isAcceptable()) {
-                        LOG.info("server channel acceptable");
-
+                        LOG.info("channel active");
                         serverHandler.handleAccept(key);
                     }
 
                     if (key.isReadable()) {
                         // 从客户端读取数据
-                        LOG.info("server channel readable");
+                        LOG.info("channel readable");
                         serverHandler.handleRead(key);
                     }
 
@@ -137,6 +136,8 @@ public class NioTcpServer {
                 } catch (IOException ex) {
                     // 出现I/O异常（如客户端断开连接）时移除处理过的键
                     try {
+
+                        LOG.info("exception happend, channel Inactive");
                         key.cancel();
                         key.channel().close();
                         iterator.remove();
