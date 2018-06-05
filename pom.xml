@@ -11,6 +11,8 @@
     <modules>
         <module>discard-service</module>
         <module>echo-service</module>
+        <module>bytebuf-api</module>
+        <module>channel-api</module>
     </modules>
 
     <properties>
@@ -23,6 +25,7 @@
         <netty.version>4.1.24.Final</netty.version>
         <logback.version>1.2.3</logback.version>
         <slf4j.version>1.7.25</slf4j.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
     <dependencyManagement>
@@ -54,6 +57,11 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
