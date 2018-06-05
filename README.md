@@ -15,5 +15,8 @@ echo-service模块是用Netty实现的echo服务，主要功能是客户端连�
 bytebuf-api模块是Netty底层核心组件主要API的测试示例，包括slice(),copy(),getXXX(),setXXX(),readerXXX(),writerXXX()等。
 
 ## handler-test
-handler-test模块是使用EmbeddedChannel对ChannelHandler进行单元测试的示例，主要涉及使用EmbeddedChannel测试ChannelHandler如何处理入站消息，出站消息
+handler-test模块是使用EmbeddedChannel对ChannelHandler进行单元测试的示例，主要涉及使用EmbeddedChannel测试ChannelHandler如何处理入站消息，出站消息，
 异常处理等方面。单元测试工作是结合[Junit](https://junit.org/junit4/)完成。
+
+## codec-service
+codec-service模块是Netty编解码器API示例，包括ByteToMessageDecoder，MessageToByteEncoder，MessageToMessageCodec，CombinedIntegerStringCodec编解码器使用方法。模块中使用MessageToMessageCodec实现了一个简单二进制私有协议栈编解码功能。
