@@ -14,7 +14,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * 非阻塞版本TcpServer
+ * 非阻塞版本Java NIO TcpServer
  *
  * @auther Phantom Gui
  * @date 2018/6/1 13:43

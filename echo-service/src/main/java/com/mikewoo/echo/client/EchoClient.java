@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.net.InetSocketAddress;
 
 /**
- * Echo Service 客户端引导程序
+ * Echo Service Netty客户端引导程序
  *
  * @auther Phantom Gui
  * @date 2018/5/31 16:26

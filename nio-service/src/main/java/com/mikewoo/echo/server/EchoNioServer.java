@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * 未使用Netty的非阻塞模式EchoServer
+ * 未使用Netty的非阻塞模式Java NIO EchoServer
  *
  * @auther Phantom Gui
  * @date 2018/6/1 11:39

@@ -8,7 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * 未使用Netty的阻塞模式EchoServer
+ * 未使用Netty的阻塞模式Java OIO EchoServer
  *
  * @auther Phantom Gui
  * @date 2018/6/1 11:04

@@ -12,7 +12,8 @@
         <module>discard-service</module>
         <module>echo-service</module>
         <module>bytebuf-api</module>
-        <module>channel-api</module>
+        <module>handler-test</module>
+        <module>nio-service</module>
     </modules>
 
     <properties>
