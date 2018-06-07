@@ -20,3 +20,7 @@ handler-test模块是使用EmbeddedChannel对ChannelHandler进行单元测试的
 
 ## codec-service
 codec-service模块是Netty编解码器API示例，包括ByteToMessageDecoder，MessageToByteEncoder，MessageToMessageCodec，CombinedIntegerStringCodec编解码器使用方法。模块中使用MessageToMessageCodec实现了一个简单二进制私有协议栈编解码功能。
+
+## http-service
+http-service模块是Netty实现的HTTP服务器和客户端示例，实现了HTTP客户端向HTTP服务器发送一个HTTP请求，服务器会返回一个HTTP响应。
+Netty提供了现成的HttpResponse/HttpRequest编解码器，可以直接使用，另外可以通过添加SslHandler(参考工程中的HttpsChannelInitializer类)，构建HTTPS服务。

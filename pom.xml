@@ -15,6 +15,7 @@
         <module>handler-test</module>
         <module>nio-service</module>
         <module>codec-service</module>
+        <module>http-service</module>
     </modules>
 
     <properties>

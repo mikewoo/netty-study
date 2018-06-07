@@ -48,7 +48,7 @@ public class EchoClient {
                             ch.pipeline().addLast(new EchoClientHandler());
                         }
                     });
-
+            LOG.info("echo client started && connect to server {} : {}", host, port);
             ChannelFuture f = bootstrap.connect().sync();
             f.channel().closeFuture().sync();
 
