@@ -1,5 +1,6 @@
 package com.mikewoo.http.server;
 
+import com.mikewoo.http.handler.HttpAggregatorChannelInitializer;
 import com.mikewoo.http.handler.HttpChannelInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -37,7 +38,8 @@ public class HttpServer {
         try {
             bootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(new HttpChannelInitializer(true))
+                    //.childHandler(new HttpChannelInitializer(true))
+                    .childHandler(new HttpAggregatorChannelInitializer(true))
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
 

@@ -1,5 +1,6 @@
 package com.mikewoo.http.client;
 
+import com.mikewoo.http.handler.HttpAggregatorChannelInitializer;
 import com.mikewoo.http.handler.HttpChannelInitializer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
@@ -49,7 +50,8 @@ public class HttpClient {
                     .channel(NioSocketChannel.class)
                     .remoteAddress(new InetSocketAddress(host, port))
                     .option(ChannelOption.SO_KEEPALIVE, true)
-                    .handler(new HttpChannelInitializer(false));
+                    // .handler(new HttpChannelInitializer(false));
+                    .handler(new HttpAggregatorChannelInitializer(false));
             LOG.info("netty http client started && connect to server {} : {}", host, port);
             ChannelFuture f = bootstrap.connect().sync();
             f.addListener(new ChannelFutureListener() {
