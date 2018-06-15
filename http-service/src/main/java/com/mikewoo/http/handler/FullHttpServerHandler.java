@@ -96,10 +96,10 @@ public class FullHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
 
                 send(ctx, HttpResponseStatus.OK, "POST: " + uri + ", status: " + RESULT_SUCCESS);
             } else if (HttpMethod.PUT == httpMethod) {
-                LOG.info("POST 请求, uri: {}, body: {}", uri, body);
+                LOG.info("PUT 请求, uri: {}, body: {}", uri, body);
                 send(ctx, HttpResponseStatus.OK, "PUT: " + uri + ", status: " + RESULT_SUCCESS);
             } else if (HttpMethod.DELETE == httpMethod) {
-                LOG.info("POST 请求, uri: {}, body: {}", uri, body);
+                LOG.info("DELETE 请求, uri: {}, body: {}", uri, body);
                 send(ctx, HttpResponseStatus.OK, "DELETE: " + uri + ", status: " + RESULT_SUCCESS);
             } else {
                 LOG.info("未知请求, uri: {}, body: {}", uri, body);
@@ -116,7 +116,7 @@ public class FullHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
             TypeReference<HashMap<String, String>> type = new TypeReference<HashMap<String, String>>() { };
             Map<String, String> params = (Map<String, String>) JsonUtil.json2Map(body, type);
             for (Map.Entry<String, String> map : params.entrySet()) {
-                LOG.info("response header: ({}, {})", map.getKey(), map.getValue());
+                LOG.info("response json param: ({}, {})", map.getKey(), map.getValue());
             }
         }
         // 解析 application/x-www-form-urlencoded
