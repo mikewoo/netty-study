@@ -30,6 +30,7 @@ public class HttpsChannelInitializer extends ChannelInitializer<Channel> {
     @Override
     protected void initChannel(Channel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
+
         pipeline.addLast("ssl-handler", new SslHandler(context.newEngine(ch.alloc())));
         if (server) { // 是服务器
             pipeline.addLast("http-decoder", new HttpRequestDecoder());

@@ -4,6 +4,8 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.*;
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslHandler;
 
 /**
  * 聚合HTTP消息ChannelHandler
@@ -13,18 +15,21 @@ import io.netty.handler.codec.http.*;
  * @auther Phantom Gui
  * @date 2018/6/14 20:26
  */
-public class HttpAggregatorChannelInitializer extends ChannelInitializer<Channel> {
+public class HttpsAggregatorChannelInitializer extends ChannelInitializer<Channel> {
 
+    private SslContext context;
 
     private boolean server;
 
-    public HttpAggregatorChannelInitializer(boolean server) {
+    public HttpsAggregatorChannelInitializer(SslContext context, boolean server) {
+        this.context = context;
         this.server = server;
     }
 
     @Override
     protected void initChannel(Channel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
+        pipeline.addLast("ssl-handler", new SslHandler(context.newEngine(ch.alloc())));
         if (server) {
             pipeline.addLast("server-codec", new HttpServerCodec());
             pipeline.addLast("http-compressor", new HttpContentCompressor()); // HTTP消息压缩
